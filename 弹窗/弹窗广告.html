@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: url(../极品飞车e/silverquill-command-mtg-card-magic-the-gathering-games-52589.jpeg);
+    }
+    .box{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position:fixed;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        top: 0;
+        background-color: rgba(0,0,0,.6);
+        z-index: 999;
+        height: 100vh;
+        overflow:hidden;     
+        display: fixed;
+        top: 0%;
+        vertical-align: middle;
+        backdrop-filter: blur(10px);
+    }
+    .content{
+
+        position: relative;
+        width: 700px;
+        height: 600px;
+        background-color: rgba(255,255,255,.7);
+        z-index: 1000;
+        user-select:none;
+    }
+    .content div{
+        position: absolute;
+        padding: 5px 5px;
+        right: 0;
+        width: 20px;
+        height: 20px;
+    }
+    .close::before,.close::after{
+        margin-left: -2px;
+        content: '';
+        display: block;
+        border-top: 2px solid black;
+        width:25px;
+    }
+    .close::before{
+        margin-top: 10px;
+        transform:rotate(135deg);
+    }
+    .close::after{
+        margin-top: -2px;
+        transform: rotate(-135deg);
+    }
+    .close:hover{
+        cursor: pointer;
+        border-radius: 5px;
+        box-shadow: 0px 4px 10px 4px rgba(0,0,0,.6);
+    }
+</style>
+<body>
+    <div class="box">
+        <div class="content">
+            <div class="close" onclick="Close()"></div>
+        </div>
+    </div>
+</body>
+<!-- <script src="./弹窗/index.js"></script> -->
+<script type="text/javascript">
+    var close = document.getElementsByClassName("close")[0];
+    var content = document.getElementsByClassName("content")[0];
+    var box = document.getElementsByClassName("box")[0];
+    // var ck = new Cookie("HasLoaded");
+    if(sessionStorage.getItem("isReload")){
+        content.style.display="none";
+        box.style.display="none";
+        console.log("页面被刷新");
+        }else{
+        console.log("首次被加载");
+        sessionStorage.setItem("isReload", true);
+        box.style.display="flex";
+        content.style.display="block";
+        }
+    function Close(){
+        content.style.display="none";
+        box.style.display="none";
+    }
+</script>
+</html>

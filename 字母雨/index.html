@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <script>
+        var width = document.getElementById("canvas").width = screen.availWidth;
+        console.log(screen.availHeight+"-------"+screen.height);
+        var height = document.getElementById("canvas").height = screen.availHeight;
+        console.log(screen.availWidth+"-------"+screen.width);
+        // 创建一个大小为 width/10 的数组并填充为 0
+        // 获取 canvas 的绘图上下文
+        const ctx = document.getElementById("canvas").getContext("2d");
+        // 创建一个大小为 width/10 的数组并填充为 0
+        const arr = Array(Math.ceil(width / 10)).fill(0); 
+        console.log(arr);
+        //字母的字符串。split让字符串产生逗号。
+        const str = "abcdefghijklmnopqrstuvwxyz"+"1234567890".split("");
+        console.log(str);
+        // 绘制文字
+        ctx.font= "10px 优设标题黑";
+        function rain(){
+            ctx.fillStyle="rgba(0,0,20,0.05)";
+            ctx.fillRect(0,  0, width, height); 
+            // ctx.fillStyle="#8cb1e4";
+            ctx.fillStyle="green";
+            arr.forEach(function(value,index){
+                // console.log(value+"-----"+index);
+                let wordSeed = str[Math.floor(Math.random()*str.length)];
+                // console.log(index+"-----"+wordSeed);
+                // fillText(text,x,y,maxWidth);
+                // 我们采取了foreach中的数组的值和数组小标来当y和x
+                // 绘制文字
+                ctx.fillText(wordSeed,index*10,value+10);
+                setInterval(function(){
+                    // ctx.fillText(wordSeed,index*10,value+10);
+                },10);
+                arr[index] = value >= height || value > 111111* Math.random() ? 0 : value + 10;
+            });
+        }
+        window.addEventListener("resize", resizeCanvas, false);
+
+        function resizeCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            ctx.font = "10rpx 优设标题黑";
+        }
+        setInterval(rain,10)
+    </script>
+</body>
+</html>

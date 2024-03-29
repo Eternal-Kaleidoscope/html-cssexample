@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>炫酷的旋转框按钮</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: url(./body.bmp);
+        background-position: center center;
+        background-size: cover;
+    }
+
+    .con{
+        width: 300px;
+        height: 500px;
+        background-image: linear-gradient(to right top,
+            rgba(161,192,227,.6),
+            rgba(161,192,227,.5),
+            rgba(161,192,227,.4)
+        );
+        backdrop-filter: blur(10px);
+        box-shadow: -2px 2px 5px 5px rgba(0, 0, 0, .2);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .con h2{
+        padding: 10px;
+    }
+
+    .con{
+        padding: 40px;
+    }
+
+    .con .T fieldset{
+        display: none;
+    }
+
+    .con .T{
+        padding: 15px;
+        color: white;
+        font-size:18px;
+        font-weight: bold;
+    }
+
+    .con .co input{
+        outline: none;
+        border: none;
+        background: none;
+        box-shadow: 0 2px 0 0 rgb(255, 255, 255);
+        font-size: 15px;
+        color: rebeccapurple;
+        font-weight: bold;
+    }
+    .con .co fieldset{
+        border: none;
+    }
+    .con .co legend{
+        opacity: 0;
+    }
+    .con .co fieldset legend input:focus fieldset legend{
+        opacity: 1;
+        border: 1px solid #fff;
+        color: blueviolet;
+        transition: .5s;
+    }
+    ul{
+        list-style:none;
+    }
+
+    h2{
+        color: white;
+    }
+
+    h2::selection{
+        background-color: aqua;
+        color: blueviolet;
+    }
+
+    .T::selection{
+        background-color: aqua;
+        color: blueviolet;
+    }
+    
+    input::selection{
+        background-color: aqua;
+        color: blueviolet;
+    }
+    /* 这个before作用是找到.con的标签，它的第一个子元素就是before */
+    /* 这个是实现灯框的边框动画效果 */
+    .con::before{
+        /* 因为是父相子决，如果是相对定位，left和top是要考虑border等的，所以我直接用absolute定位到边框上 */
+        position: absolute;
+        top: 0;
+        left: 0;
+        /* 激活 */
+        content: '';
+        /* 设置边框 */
+        border: 2px solid white;
+        /* 大小要和边框的大小一致 */
+        width: 300px;
+        height: 500px;
+        /* 使用裁剪方式创建元素的可显示区域。区域内的部分显示，区域外的隐藏。 */
+        /*  inset是定义一个矩形*/
+        clip-path: inset(10px);
+        /* 实现动画效果，第一个是绑定动画事件，第二个是整体完成的事件，保持动画的持续时间 */
+        animation: ch 8s infinite;
+    }
+
+    /* 先走高度，再走宽度 */
+    @keyframes ch{
+        /* 刚开始，和完成动画的位置 */
+        0%,100%{
+            clip-path: inset(0 0 500px 0);
+        }
+        /* 走1/4 */
+        25%{
+            clip-path: inset(0 300px 0 0);
+        }
+        /* 走1/2 */
+        50%{
+            clip-path: inset(500px 0 0 0);
+        }
+        /* 走3/4 */
+        75%{
+            clip-path: inset(0 0 0 300px);
+        }
+    }
+
+    .con .go{
+        margin: 40px;
+    }
+    .con .go input{
+        margin: auto;
+        border: none;
+        background: none;
+        color: white;
+        font-size: 22px;
+        outline: none;
+        font-weight: bolder;
+        user-select:none;
+    }
+
+    .L_{
+        position: relative;
+        top: -23%;
+        width: 85px;
+        height: 85px;
+        border-radius: 50% 50%;
+    }
+
+    .l_{
+        position: absolute;
+        top: -25px;
+        left:-5px;
+        width: inherit;
+        height: inherit;
+        border-radius: 50%;
+        /* 消除光标主要解决问题是li的光标会显示影响美观 */
+        caret-color: transparent;
+    }
+    .l_:nth-of-type(1){
+        border-bottom:4px solid rgb(101, 167, 202);
+        transform: rotateX(35deg) rotateY(-35deg);
+        transition: .5s all;
+        animation: one 1.5s linear infinite;
+    }
+    .l_:nth-of-type(2){
+        border-right: 4px solid rgb(152,140,221);
+        transform:rotateX(50deg) rotateY(25deg);
+        animation: two 1.5s linear infinite;
+    }
+    .l_:nth-of-type(3){
+        border-top: 4px solid rgb(	0, 255, 165);
+        transform:rotateX(45deg) rotateY(50deg);
+        animation: three 1.5s linear infinite;
+    }
+    /* 这里的to和上面的%都是达到某个动画效果，不过这里是指实现to，那个可以设定某个位置完成某种动画效果。 */
+    /* 类似静态和动态的区别，不过用单一和多态更合适。 */
+    @keyframes one {
+        to{
+            transform: rotateX(35deg) rotateY(-35deg) rotateZ(360deg);
+        }
+    }
+    @keyframes two {
+        to{
+            transform:rotateX(50deg) rotateY(25deg) rotateZ(360deg)
+        }
+    }
+    @keyframes three {
+        to{
+            transform:rotateX(45deg) rotateY(50deg) rotateZ(360deg);
+        }
+    }
+    /* 清除过渡，也就是动画慢动作效果，会僵持。 */
+    .go:hover .l_{
+        transform: none;
+        cursor: pointer;
+    }
+    /* 加字体阴影 */
+    .go:hover input{
+        text-shadow: 0 2px 3px white;
+    }
+    /* .go input:hover{
+        cursor: pointer;
+    } */
+</style>
+<body>
+    <div class="con">
+        <h2>Login</h2>
+        <div class="T">username</div>
+        <div class="co"><fieldset><legend>username</legend><input tabindex="0" type="text"/></fieldset></div>
+        <div class="T">password</div>
+        <div class="co"><input type="password"></div>
+        <div class="go"><input type="submit" value="sign in">
+            <ul class="L_">
+                <li class="l_"></li>
+                <li class="l_"></li>
+                <li class="l_"></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

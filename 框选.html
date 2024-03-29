@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+    <div class="container">
+        <div class="area"></div>
+        <div class="list"></div>
+    </div>
+    <script>
+        var areaInfo = {
+            startX:0,
+            startY:0
+        }
+        function init(){
+            window.addEventListener('mousedown',()=>{
+                this.areaInfo.style.position="fixed";
+                this.areaInfo.style.zIndex="1";
+                this.areaInfo.style.width = this.areaInfo.width+"px";
+                this.areaInfo.style.height = this.areaInfo.height+"px";
+                this.areaInfo.style.left = this.areaInfo.startX+"px";
+                this.areaInfo.style.top = this.areaInfo.startY+"px";
+                this.areaInfo.style.opacity = "1";
+                this.areaInfo.startX = event.clientX;
+                this.areaInfo.startY = event.clientY;
+            })
+            window.addEventListener('mouseup',e =>{
+                this.areaInfo={};
+            })
+            window.addEventListener('mousemove',e =>{
+                const {startX,startY} = this.areaInfo;
+                this.areaInfo.width = event.clientX - startX;
+                this.areaInfo.height = event.clientY - startY;
+            })
+        }
+        init();
+    </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+.container{
+    .area{
+        width: 0;
+        height: 0;
+        opacity: 0;
+        background-color: rgba(0,255,255,0.4);
+        border: 1px solid rgb(0,255,255);
+    }
+    .list{
+        position: relative;
+    }
+}

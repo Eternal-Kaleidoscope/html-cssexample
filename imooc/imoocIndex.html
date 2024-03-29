@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./photos/imoocicon.png" type="image/x-icon" />
+    <title>imooc.com</title>
+    <link rel="stylesheet" href="./font/demo.css">
+    <link rel="stylesheet" href="./font/iconfont.css">
+    <link rel="stylesheet" href="./css/preload.css">
+</head>
+<style type="text/css">
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        /* 微软前缀 */
+        -ms-text-size-adjust: 100%;
+        /* 谷歌前缀 */
+        -webkit-text-size-adjust: 100%;
+        line-height: 1;
+        list-style: none;
+        text-decoration: none;
+        font-size: 13px;
+    }
+
+    div {
+        background-size: cover;
+    }
+
+    p {
+        /* 断行规则 */
+        word-break: break-all;
+    }
+
+    ol,
+    ul {
+        list-style: none;
+    }
+
+    a:link,
+    a:visited {
+        color: #1c1f21;
+    }
+    body {
+        min-width: 1200px;
+        transition: all .3s;
+        height: 100vh;
+    }
+
+    body .bk {
+        width: 1920px;
+        position: absolute;
+        margin-top: 48px;
+        top: 50px;
+        background-size: cover;
+        transition: all .3s;
+        height: 200px;
+        opacity: .3;
+        /* 取图片的背景色 */
+        filter: blur(100px);
+    }
+
+    .globalTop {
+        width: 100%;
+        min-width: 1152px;
+        max-width: 2560px;
+        overflow: hidden;
+        z-index: 899;
+        position: relative;
+        cursor: pointer;
+        background: #eee;
+        background-size: cover;
+    }
+
+    header {
+        height: 100px;
+    }
+
+    header .header-nav {
+        padding: 0 15%;
+        position: relative;
+        width: inherit;
+        min-width: 1152px;
+        margin: 0 auto;
+        height: 80px;
+        background-color: #fff;
+        z-index: 900;
+        font-size: 14px;
+        white-space: nowrap;
+    }
+
+    header .header-nav .logo {
+        display: inline-block;
+        left: 0;
+        margin: 0 20px;
+        height: 80px;
+    }
+
+    header .header-nav .logo img {
+        float: left;
+        height: 80px;
+    }
+
+    /* 大坑，vertical-align会调整组件的float之后的位置。很有可能不是对齐的，利用padding/margin即可 */
+    header .header-nav .nav-item {
+        top: 0;
+        position: relative;
+        display: inline-block;
+        font-size: 18px;
+        text-align: center;
+        height: 80px;
+        padding: 20px;
+    }
+
+    header .header-nav .nav-item li {
+        text-align: center;
+        padding: 20px 10px 10px;
+        height: 100%;
+        float: left;
+    }
+
+    header .header-nav .nav-item li .icn-new {
+        display: inline-block;
+        background: url(./photos/new.png);
+        width: 16px;
+        height: 10px;
+        position: relative;
+        right: 0;
+        bottom: 14px;
+        background-size: cover;
+    }
+
+    header .header-nav .nav-search-parent {
+        position: relative;
+        width: 300px;
+        margin-left: 10px;
+        height: inherit;
+        display: inline-block;
+    }
+
+    header .header-nav .nav-search {
+        margin: 20px 0;
+        width: inherit;
+        float: left;
+        padding: 10px auto;
+        position: relative;
+        height: 40px;
+        background-color: rgba(217, 219, 218, .3);
+        border-radius: 3px;
+        /* bottom: 20%; */
+    }
+
+
+
+    header .header-nav .nav-search input {
+        border: none;
+        width: 160px;
+        position: relative;
+        height: inherit;
+        padding: 0 5px;
+        outline: none;
+        background: none;
+    }
+
+    header .header-nav .nav-search input::placeholder {
+        color: rgba(204, 207, 205, .9);
+        left: 20px;
+        /* text-align: left; */
+    }
+
+    header .header-nav .nav-search .hotTags {
+        display: inline-block;
+
+    }
+
+    header .header-nav .nav-search .hotTags a {
+        color: #9199a1;
+        padding: 0 10px;
+        max-width: 60px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    header .header-nav .nav-search .hotTags a:hover {
+        color: red;
+    }
+
+    header .header-nav .nav-search .showhide-search {
+        display: inline-block;
+    }
+
+    header .header-nav .nav-search .showhide-search i {
+        height: 40px;
+        position: relative;
+        display: inline-block;
+        color: #545c63;
+        font-size: 18px;
+        line-height: 24px;
+        cursor: pointer;
+    }
+
+    header .header-nav .nav-search-parent .nav-search {
+        position: absolute;
+        width: 300px;
+        z-index: 900;
+    }
+
+    .search-area-result {
+        background-color: white;
+        z-index: 999;
+    }
+
+    header .header-nav .nav-search-parent .nav-search .hot {
+        padding-left: 10px;
+        width: inherit;
+        white-space: pre-wrap;
+        border-bottom: 2px solid rgba(28, 31, 33, .1);
+    }
+
+    header .header-nav .nav-search-parent .nav-search .hot .hot-item {
+        background: rgba(84, 92, 99, .1);
+        border-radius: 12px;
+        padding: 4px 12px;
+        line-height: 16px;
+        margin-right: 4px;
+        margin-bottom: 4px;
+        display: inline-block;
+        cursor: pointer;
+        font-size: 12px;
+        color: #545c63;
+    }
+
+    header .header-nav .login-area {
+        display: inline-block;
+    }
+
+    header .header-nav .login-area .nav-item{
+        float: right;
+    }
+
+    header .header-nav .login-area .nav-item .shop-cart {
+        position: relative;
+        padding: 10px;
+    }
+    header .header-nav .login-area .nav-item .shop-cart .shop-cart-icon:hover{
+        color: red;
+    }
+
+    header .header-nav .main {
+        left: auto;
+        width: 990px;
+        height: 460px;
+        padding: 32px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+        /* background:linear-gradient(
+            to right,
+            rgba(255,255,255,0.2),
+            rgba(166,186,203,0.2),
+            rgba(166,186,203,0.2)
+        ) */
+    }
+
+    .navigation {
+        width: 990px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        margin: auto;
+    }
+
+    .navigationHeader {
+        position: absolute;
+        width: 100%;
+        display: flex;
+        position: relative;
+        flex-direction: row;
+        border-radius: 8px 8px 0 0;
+    }
+
+    .leftMenu {
+        width: 228px;
+        text-align: center;
+        border-radius: 8px 0 0 0;
+        background-color: #39364d;
+        color: white;
+        z-index: 2;
+    }
+
+    .leftMenu div {
+        margin-top: 10px;
+        margin-bottom: 5px;
+        padding: 10px 0;
+    }
+
+    .leftMenu div:hover {
+        font-weight: 400;
+        background: rgba(255, 255, 255, 0.3);
+        cursor: pointer;
+        transition: .5s;
+    }
+
+    .leftMenu div>span:last-child {
+        margin-left: 4px;
+        width: 4px;
+        color: rgba(255, 255, 255, .5);
+    }
+
+    .navi-word {
+        font-size: 6px;
+    }
+
+    /* before一定要加content才能生效这个伪类选择 */
+    /* .imv2-arrow_r:before {
+        content: "\e614";
+    } */
+
+    .rightMain {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        overflow: hidden;
+        border-radius: 0 8px 0 0;
+        width: 758px;
+        height: inherit;
+        background: rgba(29, 42, 29, .5);
+    }
+
+    .button {
+        position: absolute;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: rgba(28, 31, 33, .1) url(./photos/icon-left-small.png) no-repeat center center/16px;
+        transition: all .3s;
+        z-index: 4;
+    }
+
+    .button:hover {
+        background: rgba(28, 31, 33, .5) url(./photos/icon-left-small.png) no-repeat center center/16px;
+        transition: all .3s;
+        cursor: pointer;
+    }
+
+    .leftArrow {
+        top: 50%;
+        left: 20px;
+    }
+
+    .rightArrow {
+        top: 50%;
+        right: 20px;
+        transform: rotate(180deg);
+    }
+
+    .photos {
+        display: flex;
+        flex-direction: row;
+        float: left;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        /* float: left; */
+    }
+
+    .photos img {
+        width: 758px;
+        height: 100%;
+    }
+
+    .menu {
+        position: absolute;
+        left: 228px;
+        width: 705px;
+        height: 100%;
+        background-color: white;
+        z-index: 999;
+    }
+
+    .menu .innerbox {
+        padding: 22px 30px;
+        margin-bottom: 27px;
+    }
+
+    .menu .innerbox .type {
+        color: black;
+        margin-bottom: 10px;
+        line-height: 1.25;
+        font-weight: 700;
+    }
+
+    .menu .lore {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        overflow: hidden;
+        font-size: 12px;
+        line-height: 50px;
+    }
+
+    .menu .lore span {
+        font: 700;
+        color: black;
+    }
+
+    .menu .lore .lores {
+        /* 给谷歌浏览器内核设置flex */
+        -webkit-box-flex: 1;
+        flex: 1;
+    }
+
+    .menu .advertisement {
+        padding: 15px 10px;
+        height: 158px;
+        background-color: #f3f5f6;
+    }
+
+    .menu .advertisement .advertisement-item {
+        float: left;
+        width: 300px;
+        height: 50px;
+        font-size: 0;
+        display: flex;
+        /* background-color: aqua; */
+        margin-right: 40px;
+    }
+
+    .menu .advertisement .advertisement-item .img {
+        width: 90px;
+        height: 50px;
+        margin-right: 5px;
+        border-radius: 3px;
+        box-shadow: 0 6px 10px 0 rgb(95, 101, 105/15%);
+        background-position: center center;
+    }
+
+    .menu .advertisement .advertisement-item .details {
+        width: 0;
+        flex: 1;
+        height: 50px;
+        width: 170px;
+        -webkit-box-flex: 1;
+        align-items: center;
+    }
+
+    .menu .advertisement .advertisement-item .details .title-box {
+        margin-bottom: 5px;
+        display: flex;
+        align-items: center;
+    }
+
+    .menu .advertisement .advertisement-item .details .title {
+        align-items: center;
+        width: 205px;
+        /* 保证只在一行 */
+        white-space: nowrap;
+        color: #1c1f21;
+        font-size: 10px;
+    }
+
+    .menu .advertisement .advertisement-item .details .title .text {
+        display: inline-block;
+        /* overflow保证超出直接变省略 */
+        text-overflow: ellipsis;
+        /* 保证只在一行 */
+        white-space: nowrap;
+        overflow: hidden;
+        max-width: 200px;
+    }
+
+    .menu .advertisement .advertisement-item .details .tag,
+    .discount-name {
+        display: inline-block;
+        color: #fff;
+        opacity: .6;
+        border-radius: 2px;
+        padding: 2px;
+        line-height: 1;
+        border-radius: 2px;
+    }
+
+    .menu .advertisement .advertisement-item .details .tixi {
+        background-color: red;
+    }
+
+    .menu .advertisement .advertisement-item .details .shizhan {
+        background-color: orange;
+    }
+
+    .menu .advertisement .advertisement-item .bottom {
+        color: #9199a1;
+        line-height: 1;
+    }
+
+    .menu .advertisement .advertisement-item .bottom .discount-name {
+        background: rgba(242, 13, 13, .6);
+    }
+
+    .menu .advertisement .advertisement-item .bottom .price {
+        color: red;
+        font-weight: bold;
+    }
+
+    .menu .advertisement .advertisement-item .bottom .free {
+        font-weight: normal;
+        color: #9199a1;
+    }
+
+    .menu .advertisement .advertisement-item .bottom .bottom-title .num * {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .menu .advertisement .advertisement-item .bottom .bottom-title .num svg {
+        width: 15px;
+        height: 15px;
+    }
+
+    /* 只让第一个和第二个advertisement有外下边距 */
+    .menu .advertisement .advertisement-item:nth-child(-n+2) {
+        margin-bottom: 30px;
+    }
+
+
+
+    .lore .lores a {
+        text-decoration: none;
+        float: left;
+        margin-right: 20px;
+        color: #6d7278;
+    }
+
+    .lore .lores a:hover a::after {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 10px 0 rgb(95, 101, 105/15%);
+    }
+
+    .clear::after {
+        content: '\0200';
+        clear: both;
+        display: block;
+        visibility: hidden;
+        margin-bottom: 10px;
+    }
+
+    .navigationFooter {
+        background-color: white;
+        width: 990px;
+        margin: 0 auto;
+        height: 90px;
+        box-shadow: 0 22px 22px 0 rgb(7 25 27 / 15%);
+        border-radius: 0 0 15px 15px;
+    }
+
+    .navigationFooter .show-box {
+        display: inline-block;
+        width: 175px;
+        height: 35px;
+        margin-left: 3px;
+        margin-top: 20px;
+        transition: all 1s;
+        cursor: pointer;
+    }
+
+    .navigationFooter .show-box .system-class-icon {
+        float: left;
+        margin-top: 4px;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        background-size: cover;
+        margin-right: 5px;
+        transition: all .25s;
+    }
+
+    .navigationFooter .show-box .describe {
+        float: left;
+        width: 120px;
+        padding: 10px 0;
+    }
+
+
+
+    .navigationFooter .show-box .describe h4 {
+        width: inherit;
+        font-family: "PingFangSC-Medium";
+        letter-spacing: .8px;
+        /* 保证字符超出不会换行 */
+        white-space: nowrap;
+        /* 字符超出直接消失 */
+        overflow: hidden;
+        font-size: 15px;
+        margin-bottom: 4px;
+    }
+
+    .navigationFooter .show-box .describe p {
+        width: inherit;
+        color: #6d7278;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .navigationFooter .show-box .describe:hover {
+        color: red;
+    }
+
+    .navigationFooter .line {
+
+        float: left;
+        border: 1px solid #9199a1;
+        height: 38px;
+        margin-left: 900px;
+        margin-top: -28px;
+    }
+
+    .navigationFooter .all-btn {
+        position: relative;
+        display: block;
+        height: 100%;
+        margin-top: -24px;
+        padding-left: 20px;
+        cursor: pointer;
+        overflow: hidden;
+    }
+
+    .navigation .all-btn .more-btn span {
+        /* 让span的过渡更顺滑 */
+        display: inline-block;
+        white-space: nowrap;
+        transition: all .25s;
+    }
+
+    @media screen and (min-width:640px) {
+        main {
+            width: scale(0.4);
+        }
+    }
+
+    @media screen and (min-width:940px) {
+        main {
+            width: scale(0.5);
+        }
+    }
+
+    @media screen and (min-width:1024px) {
+        main {
+            width: scale(0.6);
+        }
+    }
+
+    @media screen and (min-width:1280px) {
+        main {
+            width: scale(0.7);
+        }
+    }
+</style>
+
+<body>
+    <div class="loading">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="mainBody">
+        <div class="globalTop">
+            <div><img src="./photos/imooc/pagetop-Ad/640ac7c709ee4f0551200096.jpg" style="height: 48px; width: 100%;"></div>
+        </div>
+        <!-- 导航栏 -->
+        <header>
+            <div class="header-nav clear">
+                <div class="logo">
+                    <a href="/imoocIndex.html" target="_self" title="首页">
+                        <img src="./photos/logo.png">
+                    </a>
+                </div>
+                <ul class="nav-item">
+                    <li><a href="https://www.imooc.com/course/list" target="_self">免费课</a></li>
+                    <li><a href="https://coding.imooc.com" target="_self">实战课</a></li>
+                    <li><a href="https://class.imooc.com" target="_self">体系课<i class="icn-new"></i></a></li>
+                    <li><a href="https://www.imooc.com/wiki" target="_self">慕课教程</a></li>
+                    <li><a href="https://www.imooc.com/read" target="_self">专栏</a></li>
+                    <li><a href="https://www.imooc.com/article" target="_self">手记</a></li>
+                    <li><a href="https://qiye.imooc.com/" target="_blank">企业服务<i class="icn-new"></i></a></li>
+                    <li><a href="https://www.imooc.com/wenda" target="_self">猿问</a></li>
+                </ul>
+                <div class="nav-search-parent">
+                    <div class="nav-search clear">
+                        <input placeholder="请输入内容..." class="input-search" onfocus="inputFocus()" onblur="inputBlur()">
+                        <div class="hotTags">
+                            <a href="https://www.imooc.com/search/?words=Vue" target="_blank" class="">Vue</a>
+                            <a href="https://www.imooc.com/search/?words=Python&amp;type=course" target="_blank"
+                                class="last">Python</a>
+                        </div>
+                        <div class="showhide-search" data-show="no"><i class="iconfont icon-sousuo"></i></div>
+                        <div class="search-area-result nav-search-box js-search-wrap" style="display: none;">
+                            <div class="hot">
+                                <h2>热搜</h2>
+                                <div class="hot-box"><a href="javascript:void(0)"
+                                        class="hot-item js-history-search">Java</a><a href="javascript:void(0)"
+                                        class="hot-item js-history-search">嵌入式</a><a href="javascript:void(0)"
+                                        class="hot-item js-history-search">Vue</a><a href="javascript:void(0)"
+                                        class="hot-item js-history-search"> Go</a><a href="javascript:void(0)"
+                                        class="hot-item js-history-search">Python</a><a href="javascript:void(0)"
+                                        class="hot-item js-history-search">SpringBoot</a><a href="javascript:void(0)"
+                                        class="hot-item js-history-search">C/C++</a><a href="javascript:void(0)"
+                                        class="hot-item js-history-search">算法</a></div>
+                            </div>
+                            <div class="history">
+                                <ul data-suggest-result="suggest-result"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="login-area" class="login-area">
+                    <ul class="nav-item clear">
+                        <li class="shop-cart" id="shop-cart">
+                            <a class="shop-cart-icon" href="https://order.imooc.com/pay/cart" target="_blank" title="购物车">
+                                <span class="iconfont icon-tianchongxing-">
+                                </span>
+                            </a>
+                        </li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <!-- 主体 -->
+        <main>
+            <div class="bk" style="background-image: url('./photos/imooc/swiperphotos/640184c80001512c17920764.jpg');">
+            </div>
+            <div class="main">
+                <!--style="background-image: cross-fade(url(/photos/640184c80001512c17920764.jpg),75%);"  -->
+            </div>
+            <div class="navigation">
+                <div class="navigationHeader">
+                    <div class="menu a hide" data-id="a" style="display:none" onmouseover="changeOver()"
+                        onmouseout="changeOut()">
+                        <div class="innerbox">
+                            <h2 class="type">前端开发</h2>
+                            <!-- 清除区域块 -->
+                            <div class="clear"></div>
+                            <div class="lore">
+                                <span>知识点：</span>
+                                <div class="lores clear">
+                                    <a target="_blank" data-title="Vue.js"
+                                        href="https://coding.imooc.com/?c=vuejs">Vue.js</a>
+                                    <a target="_blank" data-title="Typescript"
+                                        href="https://coding.imooc.com/?c=tyscript">Typescript</a>
+                                    <a target="_blank" data-title="React.JS"
+                                        href="https://coding.imooc.com/?c=reactjs">React.JS</a>
+                                    <a target="_blank" data-title="HTML/CSS"
+                                        href="https://coding.imooc.com/?c=html">HTML/CSS</a>
+                                    <a target="_blank" data-title="JavaScript"
+                                        href="https://coding.imooc.com/?c=javascript">JavaScript</a>
+                                    <a target="_blank" data-title="Angular"
+                                        href="https://coding.imooc.com/?c=angular">Angular</a>
+                                    <a target="_blank" data-title="Node.js"
+                                        href="https://coding.imooc.com/?c=nodejs">Node.js</a>
+                                    <a target="_blank" data-title="jQuery"
+                                        href="https://coding.imooc.com/?c=jquery">jQuery</a>
+                                    <a target="_blank" data-title="Bootstrap"
+                                        href="https://www.imooc.com/course/list?c=bootstrap">Bootstrap</a>
+                                    <a target="_blank" data-title="Sass/Less"
+                                        href="https://www.imooc.com/course/list?c=sassless">Sass/Less</a>
+                                    <a target="_blank" data-title="WebApp"
+                                        href="https://www.imooc.com//coding.imooc.com/?c=webapp">WebApp</a>
+                                    <a target="_blank" data-title="小程序"
+                                        href="https://coding.imooc.com/?c=miniprogram">小程序</a>
+                                    <a target="_blank" data-title="前端工具" href="https://coding.imooc.com/?c=fetool">前端工具</a>
+                                    <a target="_blank" data-title="CSS"
+                                        href="https://www.imooc.com/course/list?c=css">CSS</a>
+                                    <a target="_blank" data-title="Html5"
+                                        href="https://www.imooc.com/course/list?c=html5">Html5</a>
+                                    <a target="_blank" data-title="CSS3"
+                                        href="https://www.imooc.com/course/list?c=css3">CSS3</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="advertisement">
+                            <a class="advertisement-item" href="https://class.imooc.com/sale/fearchitect" target="_blank"
+                                data-type="3" data-cid="110" data-position="1" data-level="进阶">
+                                <div class="img"
+                                    style="background-image: url('https://climg.mukewang.com/5fbb773e093a1f8100000000.png')">
+                                </div>
+                                <div class="details">
+                                    <div class="title-box">
+                                        <p class="title">
+                                            <span class="text">Web前端架构师2022</span>
+                                            <span class="tag tixi">体系</span>
+                                        </p>
+                                    </div>
+                                    <div class="bottom">
+                                        <p class="bottom-title">
+                                            <span class="discount-name">优惠价</span>
+                                            <span class="price">￥5199.00</span>
+                                            .
+                                            <span class="difficulty">
+                                                进阶
+                                            </span>
+                                            .
+                                            <span class="num">
+                                                <svg t="1678753979166" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                                    xmlns="http://www.w3.org/2000/svg" p-id="2932">
+                                                    <path
+                                                        d="M792.55789 839.238869c0 9.312237-7.548083 16.858272-16.858272 16.858272-9.311213 0-16.858272-7.547059-16.858272-16.858272 0-135.960708-110.611356-246.572064-246.572064-246.572064s-246.572064 110.611356-246.572064 246.572064c0 9.312237-7.548083 16.858272-16.858272 16.858272s-16.858272-7.547059-16.858272-16.858272c0-154.551394 125.737213-280.289632 280.289632-280.289631s280.287584 125.738237 280.287584 280.289631zM322.128658 358.041435c0-104.842786 85.295791-190.1396 190.1396-190.1396 104.839714 0 190.134481 85.296815 190.134481 190.1396s-85.294767 190.136529-190.134481 190.136529c-104.843809 0-190.1396-85.294767-190.1396-190.136529z m33.717567 0c0 86.249028 70.169933 156.419985 156.422033 156.419985 86.248004 0 156.416913-70.169933 156.416913-156.419985 0-86.2521-70.168909-156.422033-156.416913-156.422032-86.2521 0-156.422033 70.169933-156.422033 156.422032z"
+                                                        fill="#8a8a8a" p-id="2933"></path>
+                                                </svg>
+                                                <span>987</span>
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="https://coding.imooc.com/class/613.html?mc_marking=89872421de17d7c2f24dfe279a42c936&mc_channel=qd2"
+                                target="_blank" data-type="2" data-cid="613" data-position="2" data-d="前端开发"
+                                data-title="前端面试全家桶，从求职准备到面试演练" data-level="中级" class="advertisement-item">
+                                <div class="img"
+                                    style="background-image: url('./photos/634e0b6b08daf04e12000676-360-202.jpg')">
+                                </div>
+                                <div class="details">
+                                    <!--路径单独写-->
+                                    <div class="title-box">
+                                        <p class="title">
+                                            <span class="text">前端面试全家桶，从求职准备到面试演练</span>
+                                            <span class="tag shizhan">实战</span>
+                                        </p>
+                                    </div>
+                                    <div class="bottom">
+                                        <p class="bottom-title">
+                                            <span class="price">1299.00</span> ·
+                                            <span class="difficulty">
+                                                中级
+                                            </span> ·
+                                            <span class="num"><svg t="1678753979166" class="icon" viewBox="0 0 1024 1024"
+                                                    version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2932">
+                                                    <path
+                                                        d="M792.55789 839.238869c0 9.312237-7.548083 16.858272-16.858272 16.858272-9.311213 0-16.858272-7.547059-16.858272-16.858272 0-135.960708-110.611356-246.572064-246.572064-246.572064s-246.572064 110.611356-246.572064 246.572064c0 9.312237-7.548083 16.858272-16.858272 16.858272s-16.858272-7.547059-16.858272-16.858272c0-154.551394 125.737213-280.289632 280.289632-280.289631s280.287584 125.738237 280.287584 280.289631zM322.128658 358.041435c0-104.842786 85.295791-190.1396 190.1396-190.1396 104.839714 0 190.134481 85.296815 190.134481 190.1396s-85.294767 190.136529-190.134481 190.136529c-104.843809 0-190.1396-85.294767-190.1396-190.136529z m33.717567 0c0 86.249028 70.169933 156.419985 156.422033 156.419985 86.248004 0 156.416913-70.169933 156.416913-156.419985 0-86.2521-70.168909-156.422033-156.416913-156.422032-86.2521 0-156.422033 70.169933-156.422033 156.422032z"
+                                                        fill="#8a8a8a" p-id="2933"></path>
+                                                </svg> 148</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="https://coding.imooc.com/class/622.html?mc_marking=206e2a2ed409394b6f69a76a49d30e1e&mc_channel=qd3"
+                                target="_blank" data-type="2" data-cid="622" data-position="3" data-d="前端开发"
+                                data-title="WebGL+Three.js 入门与实战，系统学习 Web3D 技术" data-level="入门" class="advertisement-item">
+                                <div class="img"
+                                    style="background-image: url('./photos/63803484082b672a12000676-360-202.jpg')">
+                                </div>
+                                <div class="details">
+                                    <!--路径单独写-->
+                                    <div class="title-box">
+                                        <p class="title">
+                                            <span class="text">WebGL+Three.js 入门与实战，系统学习 Web3D 技术</span>
+                                            <span class="tag shizhan">实战</span>
+                                        </p>
+                                    </div>
+                                    <div class="bottom">
+                                        <p class="bottom-title">
+                                            <span class="price">348.00</span> ·
+                                            <span class="difficulty">
+                                                入门
+                                            </span> ·
+                                            <span class="num"><svg t="1678753979166" class="icon" viewBox="0 0 1024 1024"
+                                                    version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2932">
+                                                    <path
+                                                        d="M792.55789 839.238869c0 9.312237-7.548083 16.858272-16.858272 16.858272-9.311213 0-16.858272-7.547059-16.858272-16.858272 0-135.960708-110.611356-246.572064-246.572064-246.572064s-246.572064 110.611356-246.572064 246.572064c0 9.312237-7.548083 16.858272-16.858272 16.858272s-16.858272-7.547059-16.858272-16.858272c0-154.551394 125.737213-280.289632 280.289632-280.289631s280.287584 125.738237 280.287584 280.289631zM322.128658 358.041435c0-104.842786 85.295791-190.1396 190.1396-190.1396 104.839714 0 190.134481 85.296815 190.134481 190.1396s-85.294767 190.136529-190.134481 190.136529c-104.843809 0-190.1396-85.294767-190.1396-190.136529z m33.717567 0c0 86.249028 70.169933 156.419985 156.422033 156.419985 86.248004 0 156.416913-70.169933 156.416913-156.419985 0-86.2521-70.168909-156.422033-156.416913-156.422032-86.2521 0-156.422033 70.169933-156.422033 156.422032z"
+                                                        fill="#8a8a8a" p-id="2933"></path>
+                                                </svg> 378</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="https://www.imooc.com/learn/1363?mc_marking=6067c00adcfff7a09c0dbb6a76bc7226&mc_channel=qd4"
+                                target="_blank" data-type="1" data-cid="1363" data-position="4" data-d="前端开发"
+                                data-title="web3.0-区块链 入门指南" data-level="入门" class="advertisement-item">
+                                <div class="img"
+                                    style="background-image: url('./photos/63803484082b672a12000676-360-202.jpg')">
+                                </div>
+                                <div class="details">
+                                    <!--路径单独写-->
+                                    <div class="title-box">
+                                        <p class="title">
+                                            <span class="text">web3.0-区块链 入门指南</span>
+                                        </p>
+                                    </div>
+                                    <div class="bottom">
+                                        <p class="bottom-title">
+                                            <span class="price free">免费</span> ·
+                                            <span class="difficulty">
+                                                入门
+                                            </span> ·
+                                            <span class="num">
+                                                <svg t="1678753979166" width="15px" height="15px" class="icon"
+                                                    viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                                    p-id="2932">
+                                                    <path
+                                                        d="M792.55789 839.238869c0 9.312237-7.548083 16.858272-16.858272 16.858272-9.311213 0-16.858272-7.547059-16.858272-16.858272 0-135.960708-110.611356-246.572064-246.572064-246.572064s-246.572064 110.611356-246.572064 246.572064c0 9.312237-7.548083 16.858272-16.858272 16.858272s-16.858272-7.547059-16.858272-16.858272c0-154.551394 125.737213-280.289632 280.289632-280.289631s280.287584 125.738237 280.287584 280.289631zM322.128658 358.041435c0-104.842786 85.295791-190.1396 190.1396-190.1396 104.839714 0 190.134481 85.296815 190.134481 190.1396s-85.294767 190.136529-190.134481 190.136529c-104.843809 0-190.1396-85.294767-190.1396-190.136529z m33.717567 0c0 86.249028 70.169933 156.419985 156.422033 156.419985 86.248004 0 156.416913-70.169933 156.416913-156.419985 0-86.2521-70.168909-156.422033-156.416913-156.422032-86.2521 0-156.422033 70.169933-156.422033 156.422032z"
+                                                        fill="#8a8a8a" p-id="2933"></path>
+                                                </svg>
+                                                <span> 4118</span>
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="menu a hide" data-id="b" style="display:none" onmouseover="changeOver()"
+                        onmouseout="changeOut()">2</div>
+                    <div class="menu a hide" data-id="c" style="display:none" onmouseover="changeOver()"
+                        onmouseout="changeOut()">3</div>
+                    <div class="menu a hide" data-id="d" style="display:none" onmouseover="changeOver()"
+                        onmouseout="changeOut()">4</div>
+                    <div class="menu a hide" data-id="e" style="display:none" onmouseover="changeOver()"
+                        onmouseout="changeOut()">5</div>
+                    <div class="menu a hide" data-id="f" style="display:none" onmouseover="changeOver()"
+                        onmouseout="changeOut()">6</div>
+                    <div class="menu a hide" data-id="g" style="display:none" onmouseover="changeOver()"
+                        onmouseout="changeOut()">7</div>
+                    <div class="leftMenu">
+                        <div data-id="a" onmouseover="changeOver()" onmouseout="changeOut()">
+                            <span class="">前端开发:</span>
+                            <span class="navi-word">HTML5/Vue.js/Node.js</span>
+                            <span class="iconfont">&#xe614;</span>
+                        </div>
+                        <div data-id="b" onmouseover="changeOver()" onmouseout="changeOut()">
+                            <span class="">前端开发:</span>
+                            <span class="navi-word">HTML5/Vue.js/Node.js</span>
+                            <span class="iconfont">&#xe614;</span>
+                        </div>
+                        <div data-id="c" onmouseover="changeOver()" onmouseout="changeOut()">
+                            <span class="">前端开发:</span>
+                            <span class="navi-word">HTML5/Vue.js/Node.js</span>
+                            <span class="iconfont">&#xe614;</span>
+                        </div>
+                        <div data-id="d" onmouseover="changeOver()" onmouseout="changeOut()">
+                            <span class="">前端开发:</span>
+                            <span class="navi-word">HTML5/Vue.js/Node.js</span>
+                            <span class="iconfont">&#xe614;</span>
+                        </div>
+                        <div data-id="e" onmouseover="changeOver()" onmouseout="changeOut()">
+                            <span class="">前端开发:</span>
+                            <span class="navi-word">HTML5/Vue.js/Node.js</span>
+                            <span class="iconfont">&#xe614;</span>
+                        </div>
+                        <div data-id="f" onmouseover="changeOver()" onmouseout="changeOut()">
+                            <span class="">前端开发:</span>
+                            <span class="navi-word">HTML5/Vue.js/Node.js</span>
+                            <span class="iconfont">&#xe614;</span>
+                        </div>
+                        <div data-id="g" onmouseover="changeOver()" onmouseout="changeOut()">
+                            <span class="">前端开发:</span>
+                            <span class="navi-word">HTML5/Vue.js/Node.js</span>
+                            <span class="iconfont">&#xe614;</span>
+                        </div>
+                    </div>
+                    <div class="rightMain">
+                        <ul class="photos" onmouseenter="mouseenter()" onmouseleave="mouseleave()">
+                            <li><a><img src="./photos/imooc/swiperphotos/640184c80001512c17920764.jpg" alt="1"></a></li>
+                            <li><a href="http://class.imooc.com/sale/embedded?mc_marking=eeee0bf1f53ecd1186e5a6643cdfdeed&mc_channel=banner" target="_blank"><img src="./photos/imooc/swiperphotos/6404ba4200018a1217920764.jpg" alt="2"></a></li>
+                            <li><a><img src="./photos/imooc/swiperphotos/6404bab80001799d17920764.jpg" alt="3"></a></li>
+                            <li><a><img src="./photos/imooc/swiperphotos/640596cf0001802d17920764.jpg" alt="4"></a></li>
+                            <li><a><img src="./photos/imooc/swiperphotos/swiper-3.jpg" alt="5"></a></li>
+                            <li><a><img src="./photos/imooc/swiperphotos/swiper-4.jpg" alt="6"></a></li>
+                            <li><a><img src="./photos/imooc/swiperphotos/swiper-5.jpg" alt="7"></a></li>
+                            <li><a href="https://coding.imooc.com/class/639.html?mc_marking=ea9d393a54ec38d6fd9e75ebd3cfdcf7&mc_channel=banner" target="_blank"><img src="./photos/imooc/swiperphotos/64057dd10001602017920764.jpg" alt="8"></a></li>
+                        </ul>
+                        <div class="button leftArrow" onmouseenter="mouseenter()" onmouseleave="mouseleave()"></div>
+                        <div class="button rightArrow" onmouseenter="mouseenter()" onmouseleave="mouseleave()"></div>
+                    </div>
+                </div>
+                <div class="navigationFooter">
+                    <a class="show-box" data-type="3" data-position="1" data-title="嵌入式工程师"
+                        href="https://class.imooc.com/sale/embedded" target="_blank">
+                        <div class="system-class-icon"
+                            style="background-image: url('./photos/imooc/icon-IMAGE/6404bbe500016fa001800180.jpg')">
+                        </div>
+                        <div class="describe">
+                            <h4>嵌入式工程师</h4>
+                            <p>蓝海风口，就业稳定</p>
+                        </div>
+                    </a>
+                    <a class="show-box" data-type="3" data-position="2" data-title="Java工程师"
+                        href="https://class.imooc.com/sale/java2021?mc_marking=27c503d8d83f4e27c222c7f27939e76a&amp;mc_channel=syjptx1"
+                        target="_blank">
+                        <div class="system-class-icon"
+                            style="background-image: url('./photos/imooc/icon-IMAGE/601bd59c0001fc1800900090.jpg');">
+                        </div>
+                        <div class="describe">
+                            <h4>Java工程师</h4>
+                            <p>王牌编程语言</p>
+                        </div>
+                    </a>
+                    <a class="show-box" data-type="3" data-position="3" data-title="前端工程师"
+                        href="https://class.imooc.com/sale/fe2021?mc_marking=ae6147731d01e9b46bd693e45b8ff94e&amp;mc_channel=syjptx2"
+                        target="_blank">
+                        <div class="system-class-icon"
+                            style="background-image: url('./photos/imooc/icon-IMAGE/601bd5b2000180bb00900090.jpg');">
+                        </div>
+                        <div class="describe">
+                            <h4>前端工程师</h4>
+                            <p>零基础首选易上手</p>
+                        </div>
+                    </a>
+                    <a class="show-box" data-type="3" data-position="4" data-title="Python工程师"
+                        href="https://class.imooc.com/sale/python2021?mc_marking=466c136dad84892934fdb99eb28b7fb9&amp;mc_channel=syjptx3"
+                        target="_blank">
+                        <div class="system-class-icon"
+                            style="background-image: url('./photos/imooc/icon-IMAGE/601bd5ba0001fbfa00900090.jpg');">
+                        </div>
+                        <div class="describe">
+                            <h4>Python工程师</h4>
+                            <p>超强生命力</p>
+                        </div>
+                    </a>
+                    <a class="show-box" data-type="3" data-position="5" data-title="Java高级工程师"
+                        href="https://class.imooc.com/sale/javasenior?mc_marking=a1f07f5a51c8ecfccda5c370c719f026&amp;mc_channel=syjptx12"
+                        target="_blank">
+                        <div class="system-class-icon"
+                            style="background-image: url('./photos/imooc/icon-IMAGE/601bd59c0001fc1800900090.jpg');">
+                        </div>
+                        <div class="describe">
+                            <h4>Java高级工程师</h4>
+                            <p>高级人才必修课</p>
+                        </div>
+                    </a>
+                    <div class="line"></div>
+                    <a class="all-btn" target="_blank" data-btn="1" href="//class.imooc.com/">
+                        <div class="mini-title">体系课</div>
+                        <div class="more-btn">more<span class="iconfont icon-angle-right"></span></div>
+                    </a>
+                </div>
+            </div>
+            </div>
+        </main>
+        <footer>
+        </footer>
+    </div>
+</body>
+<script type="text/javascript">
+        var mainBody = document.querySelector(".mainBody");
+        var loading = document.querySelector(".loading");
+        var width = 0;
+        var id = setInterval(frame,40);
+        function frame(){
+            if(width==15){
+                clearInterval(id);
+                loading.style.display="none";
+                mainBody.style.display="block";
+            }
+            else{
+                width++;
+                mainBody.style.display="none";
+            }
+        }
+
+
+    var searchList = document.getElementsByClassName("search-area-result")[0];
+    var searchInput = document.getElementsByClassName("input-search")[0];
+    
+    // console.log(document.getElementsByClassName("history")[0].children[0]);
+    // 历史记录的容器，保证在添加到5条之后开始重复添加删除
+
+    var a = Array(5);
+    //数组下标
+    var i = 0;
+    //是否开启重复替换历史记录
+    var flag = false;
+    //要搜索的key，给搜索按钮使用
+    var values;
+    function onMouseOver(){
+        event.currentTarget.style.backgroundColor="rgba(84, 92, 99, .1)";
+        event.currentTarget.style.color="black";
+        event.currentTarget.style.cursor="pointer";
+    }
+    function onMouseOut(){
+        event.currentTarget.style.backgroundColor="";
+        event.currentTarget.style.color="#9199a1";
+        event.currentTarget.style.cursor="none";
+    }
+    function click(){
+        console.log("click触发")
+        window.open("https://www.imooc.com/search/?words=" + event.currentTarget.innerHTML);
+    };
+    //有个bug，目前生成出来的li标签不能设置click事件，会和回车冲突。 
+    function keyup() {
+        if (i == 5) {
+            i = -1;
+            flag = true;
+        }
+        if (flag) {
+            console.log("执行remove")
+            var x = document.getElementsByClassName("history")[0].children[0].removeChild(document.getElementsByClassName("history")[0].children[0].childNodes[i + 1]);
+            x = null;
+            a.pop();
+            a[i] = searchInput.value;
+            values = searchInput.value;
+            var li = document.createElement("li");
+            li.innerHTML = a[i];
+            li.click=onClick(a[i]);
+            li.onmouseover=onMouseOver;
+            li.onmouseout=onMouseOut;
+            li.style.height = "35px";
+            li.style.padding = "10px 0px 10px 4px";
+            li.style.height = "25px";
+            li.style.verticalAlign="middle";
+            li.style.color = "#9199a1";
+            li.style.borderBottom = "2px solid rgba(28,31,33,.1)";
+            document.getElementsByClassName("history")[0].children[0].appendChild(li);
+        } else {
+            a[i] = searchInput.value;
+            console.log(a[i]);
+            var li = document.createElement("li");
+            li.classList.add('history-item');
+            li.innerHTML = "<li>"+a[i]+"</li>";
+            li.addEventListener('click',function(){
+                console.log("clicked");
+            })
+            values = searchInput.value;
+            li.onmouseover=onMouseOver;
+            li.onmouseout=onMouseOut;
+            li.style.height = "35px";
+            li.style.padding = "10px 0px 10px 4px";
+            li.style.verticalAlign="middle";
+            li.style.color = "#9199a1";
+            li.style.borderBottom = "2px solid rgba(28,31,33,.1)";
+            i++;
+            document.getElementsByClassName("history")[0].children[0].appendChild(li);
+        }
+    }
+    var hot = document.getElementsByClassName("hot")[0].children[1];
+    var hisIndx = 0;
+    for (; hisIndx < hot.children.length; hisIndx++) {
+        hot.children[hisIndx].addEventListener("pointerover", function () {
+            event.currentTarget.style.color="white";    
+            event.currentTarget.style.backgroundColor = "rgba(28,31,33,.9)";
+            event.currentTarget.style.cursor = "pointer";
+        })
+    }
+    hisIndx=0;
+    for (; hisIndx < hot.children.length; hisIndx++) {
+        hot.children[hisIndx].addEventListener("pointerout", function () {
+            event.currentTarget.style.color="";
+            event.currentTarget.style.backgroundColor = "";
+            event.currentTarget.style.cursor = "";
+        })
+    }
+
+    searchInput.onkeyup = function (e) {
+        // 兼容FF和IE和Opera
+        var event = e || window.event;
+        var key = event.which || event.keyCode || event.charCode;
+        if (key == 13) {
+            /*Do something. 调用一些方法*/
+            keyup();
+            window.open("https://www.imooc.com/search/?words=" + values);
+        }
+    };
+
+    var searchIcon = document.getElementsByClassName("icon-sousuo")[0];
+    searchIcon.addEventListener("click", function () {
+        values = searchInput.value;
+        window.open("https://www.imooc.com/search/?words=" + values);d
+    })
+
+    function inputFocus() {
+        this.placeholder = '';
+        searchList.style.display = "block";
+    }
+
+    function inputBlur() {
+        this.placeholder = '请输入内容...';
+        searchList.style.display = "none";
+    }
+
+    /*
+        左边菜单的事件
+    */
+    var menuName = document.querySelectorAll("[class='menu a hide']");
+    var leftMenu = document.getElementsByClassName("leftMenu")[0].children;
+    var index = 0;
+    //下列循环绑定失效，但是在jquery是成功的。解决方案：不能使用onmouse作为事件活跃点，必须是pointer开头的
+    // console.log(leftMenu[0])
+    // for(;index<leftMenu.length;index++){
+    //             console.log("id:"+index)
+    //             leftMenu[index].onmouseover = changeOver();
+    //             leftMenu[index].onmouseout = changeOut();
+    // }
+
+    //左边菜单移入方法
+    function changeOver() {
+        let i = 0;
+        for (; i < menuName.length; i++) {
+            if (event.currentTarget.getAttribute("data-id") == menuName[i].getAttribute("data-id")) {
+                menuName[i].style.display = "block";
+            }
+        }
+    }
+
+    //左边菜单移出方法
+    function changeOut() {
+        let i = 0;
+        for (; i < menuName.length; i++) {
+            if (event.currentTarget.getAttribute("data-id") == menuName[i].getAttribute("data-id")) {
+                menuName[i].style.display = "none";
+            }
+        }
+    }
+
+    /*
+        轮播框的尾部事件
+    */
+    //className获取方法返回一个数组需要用下标标出真正的元素。
+    var navFoot = document.getElementsByClassName("navigationFooter")[0];
+    var sysClsIcon = document.getElementsByClassName(".system-class-icon");
+    var navFootIndex = 0;
+
+    //尾部移入事件
+    for (; navFootIndex < navFoot.children.length; navFootIndex++) {
+        //给navfoot的每个孩子都绑定一个鼠标移入事件
+        navFoot.children[navFootIndex].addEventListener("pointerover", function () {
+            let i = 0;
+            for (; i < navFoot.children.length; i++) {
+                //给每个带有data-position属性的a标签加事件
+                if (event.currentTarget.getAttribute("data-position") == navFoot.children[i].getAttribute("data-position")) {
+                    //所以if是为了区分两部分事件，这里的第一个是把data-position去掉，第二个是data-btn的结果是0或1
+                    if (!event.currentTarget.getAttribute("data-position") && event.currentTarget.getAttribute("data-btn") == 1) {
+                        //给箭头移动，水平是X
+                        navFoot.getElementsByClassName("all-btn")[0].getElementsByClassName("more-btn")[0].children[0].style.transform = "translateX(4px)";
+                        navFoot.getElementsByClassName("all-btn")[0].getElementsByClassName("more-btn")[0].style.color = "grey";
+                    }
+                    else {
+                        //transform:translateY(单位px,em..)；移动图片
+                        navFoot.children[i].getElementsByClassName("system-class-icon")[0].style.transform = "translateY(-5px)";
+                        navFoot.children[i].getElementsByClassName("describe")[0].getElementsByTagName("h4")[0].style.color = "red";
+                    }
+                }
+            }
+        }, false)
+    }
+
+    //注意这里要清零，因为这个元素要进行二次使用，避免造成值污染
+    navFootIndex = 0;
+    //尾部移出事件
+    for (; navFootIndex < navFoot.children.length; navFootIndex++) {
+        navFoot.children[navFootIndex].addEventListener("pointerout", function () {
+            let i = 0;
+            for (; i < navFoot.children.length; i++) {
+                if (event.currentTarget.getAttribute("data-position") == navFoot.children[i].getAttribute("data-position")) {
+                    if (!event.currentTarget.getAttribute("data-position") && event.currentTarget.getAttribute("data-btn") == 1) {
+                        //清除移动直接返回原样
+                        navFoot.getElementsByClassName("all-btn")[0].getElementsByClassName("more-btn")[0].children[0].style.transform = "";
+                        navFoot.getElementsByClassName("all-btn")[0].getElementsByClassName("more-btn")[0].style.color = "";
+                    }
+                    else {
+                        navFoot.children[i].getElementsByClassName("system-class-icon")[0].style.transform = "translateY(1px)";
+                        navFoot.children[i].getElementsByClassName("describe")[0].getElementsByTagName("h4")[0].style.color = "black";
+                    }
+                }
+            }
+        }, false)//false保证该事件可以无限次使用。
+    }
+
+    /*
+        轮播图事件
+    */
+    // 轮播对象
+    //核心css：给容器ul的li保证li来左滑动设置(可以给ul设置，二选一)，float:left,并且如果是flex要设置成行排列， 然后给ul设置overflow:hidden，注意要给img标签具体的高和宽。
+    var photosNum = 0;
+    var right = document.querySelector(".rightArrow");
+    var left = document.querySelector(".leftArrow");
+    var box = document.querySelector(".rightMain")
+    var pic = document.querySelector(".photos");
+    var bk = document.querySelector(".bk");
+    var boxWidth = box.offsetWidth;
+
+    //右侧按钮的功能
+    //整体通过移动函数来移动，原理是根据标签的left的举例来移动，也就是给ul设置left
+    var num = 0;
+    right.addEventListener('click', function () {
+        num++;
+        if (num >= pic.children.length) {
+            animate(pic, 0);
+            num = 0;
+        }
+        var src = pic.children[num].children[0].children[0].getAttribute("src");
+        bk.style.backgroundImage = "url(" + src + ")";
+        animate(pic, -num * (boxWidth + 1));
+    })
+
+    //左侧按钮功能
+    left.addEventListener('click', function () {
+        if (num <= 0) {
+            num = pic.children.length;
+            animate(pic, -num * boxWidth);
+        }
+        num--;
+        // 对背景进行和图片匹配，取图片作为模糊背景色
+        var src = pic.children[num].children[0].children[0].getAttribute("src");
+        console.log(src);
+        bk.style.backgroundImage = "url(" + src + ")";
+        animate(pic, -num * (boxWidth + 2));
+    })
+
+    //自动轮播
+    function swiper() {
+        right.click();
+    }
+    var timer = this.setInterval(swiper, 4000);
+
+    //鼠标移入取消自动轮播
+    function mouseenter() {
+        clearInterval(timer);
+        pic.style.cursor = "pointer";
+    }
+
+    //移出恢复
+    function mouseleave() {
+        timer = this.setInterval(swiper, 4000);
+    }
+
+    //obj是移动的对象，target是移动的距离
+    function animate(obj, target) {
+        //防止会产生快速移动，因为为了答案缓慢的效果，每次点击就是一次生成对象。
+        clearInterval(obj.timer)
+        //开始设置移动的动画
+        obj.timer = setInterval(function () {
+            //每次移动的距离，是指开始移动到移动到的下一张图片的每30毫秒移动多长。
+            var step = Math.ceil((target - obj.offsetLeft) / 10);
+            //移动到目的地的时候就该停下了，不然一直移动。
+            if (obj.offsetLeft == target) {
+                clearInterval(obj.timer);
+            }
+            //然后给ul的left设置一个left值。
+            obj.style.left = obj.offsetLeft + step + 'px';
+        }, 30);
+    }
+
+</script>
+
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- user-scalable：no 为no时保证用户不可以缩放页面 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <script src="./index.js"></script>
+    <title>Document</title>
+    <link rel="preload" as="style" href="./critical.css">
+</head>
+
+<style>
+    html {
+        font-family: sans-serif;
+        line-height: 1.15;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+    }
+    *{
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+    }
+    body{
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background-image: url(./photos/OIP-C\ \(2\).jpg);
+        align-items: center;
+        background-color: aqua;
+        background-size:cover;
+        background-position: center center;
+    }
+    .pop{
+        margin-top: 16px;
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        border-radius: 15px;
+        background:linear-gradient(
+            to right bottom,
+            rgba(183,56,218,.7),
+            rgba(183,56,218,.5),
+            rgba(183,56,218,.4)
+        );
+        backdrop-filter: blur(9px);
+    }
+    .main{
+        padding: 10px;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+    }
+    .mainFrame{
+        display: flex;
+        flex-direction: column;
+    }
+    .images{
+        display: flex;
+        align-items: center;
+        width: 20%;
+    }
+    img{
+        width: 100%;
+    }
+    .words{
+        text-align: left;
+        display: inline;
+        width: 80%;
+    }
+    .foot{
+        display:flex;
+        justify-content:flex-end;
+        right: 20px;
+        width: 100%;
+    }
+    a{
+        text-decoration: none;
+        color: white;
+    }
+    h1,h2,h3,h4,a,p,div{
+        font-weight:normal;
+        font-size:.8em;
+    }
+    .imgFloat{
+        position: fixed;
+        bottom: 50px;
+        cursor: pointer;
+        right: 10px;
+    }
+    .add{
+        margin-left: 15px;
+        margin-top: 3px;
+    }
+    .add::before,
+    .add::after{
+        content: '';
+        border-top: 2px solid #ffffff;
+        width:40px;
+        display: block;
+        margin-top: 18px;
+    }
+    .add::after{
+        transform: rotate(90deg);
+        margin-top: -2px;
+    }
+    @media screen and (min-width:640px){
+        #main{
+            width: scale(0.4); 
+        }
+    }
+    @media screen and (min-width:940px) {
+        #main{
+            width: scale(0.5);
+        }
+    }
+    @media screen and (min-width:1024px) {
+        #main{
+            width: scale(0.6);
+        }
+    }
+    @media screen and (min-width:1280px) {
+        #main{
+            width: scale(0.7);
+        }
+    }
+</style>
+        
+        <div class="pop">
+            <div class="main">
+                <div class="images"><img src="./photos/OIP-C (2).jpg"></div>
+                <div class="words"><h3>每当我看天的时候我就不</h3></div>
+            </div>
+            <div class="foot"><a href="#">删除</a></div>
+        </div>
+        <div class="pop">
+            <div class="main">
+                <div class="images"><img src="./photos/OIP-C (2).jpg"></div>
+                <div class="words"><h3>每当我看天的时候我就不喜欢在说话，每当我说话的时候却不敢在看天,沙士大夫阿斯蒂芬斯蒂芬阿斯顿发生地方阿斯顿发生地方阿斯蒂芬的发电房撒阿道夫时代阿斯蒂芬 阿斯蒂芬的发电房是打发大水发沙发sad发阿斯蒂芬但是阿斯蒂芬撒旦法阿斯蒂芬撒旦法三大撒旦法师法士大夫沃尔沃二</h3></div>
+            </div>
+            <div class="foot"><a href="#">删除</a></div>
+        </div>
+    <div class="imgFloat"><div class="add"></div></div>
+</body>
+</html>

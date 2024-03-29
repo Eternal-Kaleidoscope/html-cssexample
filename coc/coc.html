@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/coc.css">
+</head>
+<body>
+    <div class="wrap">
+        <div class="card-item">
+            <div class="role">
+                <img src="./img/giant.png" alt="Huge-man">
+            </div>
+            <div class="des">
+                <h6>LEVEL 5</h6>
+                <h1>The Barbarian</h1>
+                <p>The Barbarian is a kilt-clad Scottish warrior with an angry,
+                    battle-ready expression, hungry for destruction. He has Killer
+                    yellow horseshoe mustache, warrior, battle-ready.</p>
+            </div>
+            <div class="btn-list">
+                <div class="btn">
+                    <h3>2</h3>
+                    <span>TRAIN</span>
+                </div>
+                <div class="btn">
+                    <h3>12</h3>
+                    <span>SPEED</span>
+                </div>
+                <div class="btn">
+                    <h3>2250</h3>
+                    <span>COST</span>
+                </div>
+            </div>
+        </div>
+        <div class="card-item">
+            <div class="role"><img src="./img/barbarian.png" alt="" /></div>
+            <div class="des">
+                <h6>LEVEL 4</h6>
+                <h1>The Barbarian</h1>
+                <p>
+                    The Barbarian is a kilt-clad Scottish warrior with an angry,
+                    battle-ready expression, hungry for destruction. He has Killer
+                    yellow horseshoe mustache, warrior, battle-ready.
+                </p>
+            </div>
+            <div class="btn-list">
+                <div class="btn">
+                    <h3>20</h3>
+                    <span>TRAIN</span>
+                </div>
+                <div class="btn">
+                    <h3>16</h3>
+                    <span>SPEED</span>
+                </div>
+                <div class="btn">
+                    <h3>150</h3>
+                    <span>COST</span>
+                </div>
+            </div>
+        </div>
+        <div class="card-item">
+            <div class="role"><img src="./img/wizard.png" alt="" /></div>
+            <div class="des">
+                <h6>LEVEL 6</h6>
+                <h1>The Wizard</h1>
+                <p>
+                    The Wizard is a terrifying presence on the battlefield. Pair him up
+                    with some of his fellows and cast concentrated blasts of destruction
+                    on anything, land or sky!
+                </p>
+            </div>
+            <div class="btn-list">
+                <div class="btn">
+                    <h3>5</h3>
+                    <span>TRAIN</span>
+                </div>
+                <div class="btn">
+                    <h3>16</h3>
+                    <span>SPEED</span>
+                </div>
+                <div class="btn">
+                    <h3>4000</h3>
+                    <span>COST</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/vanilla-tilt.js"></script>
+    <script type="text/javascript">
+        VanillaTilt.init(document.querySelectorAll('.card-item'),{
+            max:25,
+            speed:100,
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+.container{
+    background-color: #f7f7f7;
+    position: relative;
+    width: 100%;
+    /* height: 100vh; */
+    padding: 50px 100px;
+}
+
+.title{
+    text-align: center;
+}
+
+.title span{
+    color: #349c4b;
+}
+
+.tab-btn{
+    text-align: center;
+    padding:10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 15px;
+}
+
+.btns{
+    width: 180px;
+    height: 40px;
+    border-radius: 25px;
+    background-color: white;
+    box-shadow: 12px 12px 15px rgba(0,0,0,.12);
+    cursor: pointer;
+}
+
+.btns a{
+    text-transform: capitalize;
+    line-height: 40px;
+    /* border: 1px solid #349c4b;
+    background-color: #349c4b;
+    color: #f7f7f7; */
+    border-radius: 25px;
+    padding: 8px 9px;
+    transition: .5s;
+}
+
+
+.btns a:nth-child(even){
+    background-color: transparent;
+    color: black;
+    border: transparent;
+}
+
+
+.btns a:focus{
+    border: 1px solid #349c4b;
+    background-color: #349c4b;
+    color: #f7f7f7;
+}
+
+.btns a:hover{
+    background-color: transparent;
+    color: black;
+    border: 1px solid #349c4b;
+}
+
+.tab-btn p{
+    color: #7732bb;
+    margin-left: 14px;
+    text-transform: uppercase;
+}
+
+.prizing-boxes{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 58px ;
+    flex-wrap: wrap;
+}
+.prizing-box{
+    min-width: 283px;
+    height: 380px;
+    background-color: #fff;
+    border: 1px solid #349c4b;
+    text-align: center;
+}
+
+.prizing-box .start{
+    margin-top: 20px;
+}
+.prizing-box p{
+    text-transform: capitalize;
+}
+.prizing-box .free{
+    text-transform: up;
+    margin-top: 55px;
+    color: #349c4b;
+}
+.prizing-box button{
+    height: 45px;
+    padding: 0 12px;
+    border-radius: 25px;
+    border: transparent;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: #349c4b;
+}
+.prizing-box button:hover{
+    cursor: pointer;
+    background-color: transparent;
+    border: #349c4b 1px solid;
+    color: black;
+}
+
+.free span{
+    font-size: inherit;
+    color: black;
+}
+
+sub{
+    position: relative;
+    font-size: 15px;
+    top:-8px;
+}
+
+@media screen and (max-width:375px){
+    .container{
+        padding: 25px 15px;
+    }
+}
+
+@media screen and (min-height:1081px){
+    .container{
+        height:100%;
+    }
+}

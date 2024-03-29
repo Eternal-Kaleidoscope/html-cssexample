@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            height: 100vh;
+            display: grid;
+            place-items: center;
+            background-color: white;
+        }
+        #typing{
+            width: 22ch; 
+            animation:typing 2s steps(16),blink .5s step-end infinite alternate;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid black;
+            font-family: monospace;
+            font-size: 2em;
+        }       
+        
+        @keyframes typing {
+            from{
+                width: 10ch;
+            }
+            to{
+                width: 22ch;
+            }
+        }
+        @keyframes reback {
+            from{
+                width: 22ch;
+            }
+            to{
+                width: 10ch;
+            }
+        }
+        @keyframes blink {
+            50%{
+                border-color: transparent;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="typing">
+        This is a typing demo.
+    </div>
+</body>
+</html>

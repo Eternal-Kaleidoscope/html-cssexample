@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- user-scalable：no 为no时保证用户不可以缩放页面 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <script src="./index.js"></script>
+    <title>Document</title>
+</head>
+<style>
+    html {
+        font-family: sans-serif;
+        line-height: 1.15;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+    }
+    a{
+        text-decoration: none;
+        color: inherit;
+    }
+    *{
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+        user-select: none;
+    }
+    body{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column; 
+    }
+    #main{
+        margin-top: 56px;
+        width: 80%;
+        font-size: 13px; 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        /* color: #a0a5a8; */
+    }
+    
+    #head{
+        font-size: 15px;
+        width: 100%;
+        height: 56px;
+        line-height: 56px;
+        position:fixed;
+        top: 0;
+        z-index: 100;
+        background-color:rgba(106,107,107,0.95);
+    }
+    #head .row {
+        position: fixed;
+        top: -15px;
+        transform: translateY(50%);   
+        transform: translateZ(0);
+        /* text-align: center; */
+        overflow: hidden;
+        font-size: .56rem;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+        width: 80%;
+        border-color: #d6d6d6;
+        margin: 0 auto;
+    }
+    .chapback{ 
+        display: inline;
+        font-size: 15px;
+        color: white;
+    }
+    .chaptitle {
+        display: inline;
+        font-size: 16px;
+        line-height: 3.7em;
+        color: #48d8b5;
+        font-weight: 400;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 20px;    
+    }
+    h1,h2,h3,h4,h5,h6,p,div{
+        font-weight: 400;
+    }
+    #imgs{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    #content-img{
+        width: 80%;
+    }
+    #foot{
+        width: 100%;
+        display: flex;
+        padding: 15px;
+        justify-content: space-around;
+        align-items: start;
+    }   
+    .imgFloat{
+        position: fixed;
+        bottom: 30px;
+        cursor: pointer;
+        right: 20px;
+    }
+    .chappl{
+        text-align: center;
+        width: 50px;
+        background-color: #3b3b3b;
+        color: #ffff;
+        font-size: 14px;
+        line-height: 30px;
+        border-radius: 7px;
+        padding: 5px 0;
+        margin-bottom: 5px;
+    }
+    @media screen and (min-width:640px){
+        #main{
+            width: scale(0.4); 
+        }
+    }
+    @media screen and (min-width:940px) {
+        #main{
+            width: scale(0.5);
+        }
+    }
+    @media screen and (min-width:1024px) {
+        #main{
+            width: scale(0.6);
+        }
+    }
+    @media screen and (min-width:1280px) {
+        #main{
+            width: scale(0.7);
+        }
+    }
+</style>
+<body>
+    <div id="head">
+        <div class="row">
+            <a class="chapback" href="#">退出阅读</a><div class="chaptitle">>第1话</div>
+        </div>
+        
+    </div>
+    <div id="main">        
+        <div id="imgs">
+            <img id="content-img" src="../images/3426a8225e2f464a903fa04c59046b3d_noop.jpg">
+            <img id="content-img" src="../images/3426a8225e2f464a903fa04c59046b3d_noop.jpg">
+            <img id="content-img" src="../images/0014dc9a71404fd1b2ea332acd0de261_noop.jpg">
+            <img id="content-img" src="../images/0014dc9a71404fd1b2ea332acd0de261_noop.jpg">
+            <img id="content-img" src="../images/0014dc9a71404fd1b2ea332acd0de261_noop.jpg">
+            <img id="content-img" src="../images/0014dc9a71404fd1b2ea332acd0de261_noop.jpg">
+            <img id="content-img" src="../images/0014dc9a71404fd1b2ea332acd0de261_noop.jpg">
+        </div>
+        <div id="foot">
+            <span id="last">上一页</span>
+            <span id="backindex">回到首页</span>
+            <span id="next">下一页</span>
+        </div>
+        <div class="imgFloat">
+            <p class="chappl"><a href="#">上一章</a></p>
+            <p class="chappl"><a href="#">下一章</a></p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        li{
+            list-style: none;
+        }
+        .navigator{
+            width: 100%;
+            height: 100px;
+            background-color: skyblue;
+        }
+        .logo{
+            margin: 0 20px;
+        }
+        .left{
+            float: left;
+        }
+        .swift{
+            /* margin: 0 auto; */
+            display: flex;
+            flex-direction: row;
+            position: relative;
+            margin-top: 10px;
+            /* padding: 0 100px; */
+            overflow: hidden;
+        }
+        .right{
+            margin-top: 25px;
+            right: 0;
+            float: right;
+        }
+        .swift .photos{
+            width: 600%;
+        }
+        .photos{
+            display: flex;
+            flex-direction: row;
+            float: left;
+            overflow: hidden;
+            /* width: 100%;
+            height: 100%; */
+        }
+        .photos li{
+            float: left;
+        }
+        .photos img{
+            width: 1366px;
+            height: 336.5px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div class="navigator" frag="头部导航栏">
+        <div class="logo">
+            <img class="left" src="./static/images/logo2.png">
+            <img class="right" src="./static/images/motto.png">
+        </div>
+    </div>
+    <div class="swift" style="width: 100%;height: 336.5px;">
+        <ul class="photos">
+            <li><img src="./static/images/swift/63bad8dd-7d08-4d40-8589-494e7be2cf5f.jpg" alt=""></li>
+            <li><img src="./static/images/swift/6bc377bf-2716-4300-a81b-371205a58436.jpg" alt=""></li>
+            <li><img src="./static/images/swift/6c9660ea-1c75-4bbd-9ced-9f9e0dce4108.jpg" alt=""></li>
+            <li><img src="./static/images/swift/72d83cde-dc8e-4c67-a1d6-8aeda69b095d.jpg" alt=""></li>
+            <li><img src="./static/images/swift/d312b47c-b34b-4704-a3ff-185215925c79.jpg" alt=""></li>
+        </ul>
+        <div class="leftArrow"></div>
+        <div class="rightArrow"></div>
+    </div>
+    <div class="main" frag="内容区">
+        
+    </div>
+</body>
+<script>
+    window.onload = function(){
+        setInterval(swiftPhotos(),1000);
+    }
+    function swiftPhotos(){
+        var box = document.getElementsByClassName('swift')[0];
+        var photos = document.getElementsByClassName('photos')[0];
+        var left = document.getElementsByClassName('leftArrow')[0];
+        var right = document.getElementsByClassName('rightArrow')[0];
+        var boxWidth = box.clientWidth;
+        var num = 0;
+        num++;
+        if (num >=photos.children.length) {
+            animate(photos, 0);
+            num = 0;
+        }
+        console.log(photos);
+        animate(photos, -num * (boxWidth + 1));
+    }   
+    
+    //obj是移动的对象，target是移动的距离。
+    function animate(obj, target) {
+        //防止会产生快速移动，因为为了答案缓慢的效果，每次点击就是一次生成对象。
+        clearInterval(obj.timer)
+        //开始设置移动的动画。
+        obj.timer = setInterval(function () {
+            //每次移动的距离，是指开始移动到移动到的下一张图片的每30毫秒移动多长。
+            var step = Math.ceil((target - obj.offsetLeft) / 10);
+            //移动到目的地的时候就该停下了，不然一直移动。
+            if (obj.offsetLeft == target) {
+                clearInterval(obj.timer);
+            }
+            //然后给ul的left设置一个left值。
+            obj.style.left = obj.offsetLeft + step + 'px';
+        }, 30);
+    }
+</script>
+</html>

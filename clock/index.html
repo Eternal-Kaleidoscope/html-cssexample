@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style rel="stylesheet">
+    body{
+        display: flex;
+        justify-content: center;
+    }
+    clock{
+        border-radius: 50%;
+        display: block;
+        width: 200px;
+        height: 200px;
+        background: repeating-conic-gradient(#333 0deg 1deg, transparent 0deg 30deg),
+        repeating-conic-gradient(#c7c7c7 0deg 1deg, transparent 0deg 6deg);
+        -webkit-mask: radial-gradient(transparent 95px, red 0);
+    }
+    clock-number{
+        display: block;
+        z-index: 999;
+        position: absolute;
+        width: 150px;
+        height: 150px;
+    }
+    num{
+        position:absolute;
+        offset-path: path('M250 125c0 69.036-55.964 125-125 125S0 194.036 0 125 55 0 125 0s125 55.964 125 125z');
+        offset-rotate : 0deg;
+        offset-distance: calc( var(--i) * 10% / 1.2 - 25%);
+    }
+
+</style>
+<body>
+    <clock>
+        <clock-number>
+            <num style="--i:1">1</num>
+            <num style="--i:2">2</num>
+            <num style="--i:3">3</num>
+            <num style="--i:4">4</num>
+            <num style="--i:5">5</num>
+            <num style="--i:6">6</num>
+            <num style="--i:7">7</num>
+            <num style="--i:8">8</num>
+            <num style="--i:9">9</num>
+            <num style="--i:10">10</num>
+            <num style="--i:11">11</num>
+            <num style="--i:12">12</num>
+        </clock-number>
+    </clock>
+</body>
+</html>
